@@ -1,5 +1,5 @@
 import type React from "react"
-import type { ChangeEvent } from "react"
+import { type ChangeEvent } from "react"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from 'react-hook-form'
@@ -19,6 +19,11 @@ function Form() {
         resolver: zodResolver(CardFormSchema),
     })
 
+    const formatNumberCard = (number: string): string => {
+        const numberCard = number.replace(/\s/g, "").replace(/(\d{4})(?=\d)/g, "$1 ") // Loại bỏ tất cả ký tự không phải số -> Chèn khoảng trắng sau mỗi 4 chữ số
+        return numberCard
+    }
+
     const submitForm = async (data: CardFormType) => {
         console.log('submit', data);
         navigate("/submit-successfully")
@@ -31,7 +36,7 @@ function Form() {
                                         w-full sm:w-[60%] h-fit p-5 sm:p-10
                                         flex flex-col gap-6 justify-start">
                 <StringInput title="CARDHOLDER NAME" placeholder="e.g Le Huu Tuan" name="nameCard" register={register} formState={formState} onChange={(e: React.ChangeEvent<HTMLInputElement>) => updatefield("nameCard", e.target.value)} />
-                <StringInput title="CARD NUMBER" placeholder="e.g 6666777788889999" maxLength={16} name="numberCard" register={register} formState={formState} onChange={(e: React.ChangeEvent<HTMLInputElement>) => updatefield("numberCard", e.target.value)} />
+                <StringInput title="CARD NUMBER" placeholder="e.g 6666 7777 8888 9999" maxLength={19} name="numberCard" register={register} formState={formState} onChange={(e: React.ChangeEvent<HTMLInputElement>) => updatefield("numberCard", formatNumberCard(e.target.value))} value={formData.numberCard} />
                 <div className="flex flex-row items-center justify-between gap-2 sm:gap-4">
                     <DateInput register={register} formState={formState} onChangeMonth={(e: ChangeEvent<HTMLInputElement>) => updatefield("date.month", e.target.value)} onChangeYear={(e: ChangeEvent<HTMLInputElement>) => updatefield("date.year", e.target.value)} />
                     <StringInput title="CVC" placeholder="e.g 999" maxLength={3} name="cvc" register={register} formState={formState} onChange={(e: React.ChangeEvent<HTMLInputElement>) => updatefield("cvc", e.target.value)} />

@@ -7,16 +7,13 @@ interface CardBackProps {
     year: string;
 }
 function CardFront({ numberCard, nameCard, month, year }: CardBackProps) {
-    const formatNumberCard = (number: string): string => {
-        const numberCard = number.replace(/\s/g, "").replace(/(\d{4})(?=\d)/g, "$1 ")
-        return numberCard
-    }
     const formatDate = (number: string): string => {
         if (number.length === 1) {
             return `0${number}`
         }
         return number
     }
+
     return (
         <div style={{ backgroundImage: `url(${cardFrontImage})` }}
             className='relative w-[80%] h-full 
@@ -27,7 +24,7 @@ function CardFront({ numberCard, nameCard, month, year }: CardBackProps) {
                     <img src={cardLogo} alt="logo" className="w-12 sm:w-18 h-auto" />
                     <div className="flex flex-col justify-between gap-3
                                     text-white">
-                        <p className="text-[.9rem] sm:text-[1.2rem] tracking-[.25rem]">{numberCard ? formatNumberCard(numberCard) : "0000 0000 0000 0000"}</p>
+                        <p className="text-[.9rem] sm:text-[1.2rem] tracking-[.25rem]">{numberCard ? numberCard : "0000 0000 0000 0000"}</p>
                         <div className="flex flex-row justify-between items-center
                                         text-[.65rem] sm:text-xs font-light sm:font-normal tracking-[.1rem]">
                             <p>{nameCard}</p>

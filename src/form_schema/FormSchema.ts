@@ -7,7 +7,7 @@ export const CardFormSchema = z.object({
     .regex(/^[a-zA-Z\s]+$/, { message: "Wrong format, text only" }),
   numberCard: z
     .string()
-    .length(16, {
+    .length(19, {
       message:
         "Card number must be 16 numbers, no spaces or special characters",
     })
