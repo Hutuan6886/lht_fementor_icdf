@@ -18,13 +18,13 @@ function DateInput({ register, formState, onChangeMonth, onChangeYear }: DateInp
             <h3 className="text-[.6rem] tracking-[.1rem]">EXP. DATE(MM/YY)</h3>
             <div className="flex flex-row items-center justify-between gap-2
                             text-black">
-                <input {...register(`date.month`)} disabled={formState.isSubmitting} type="text" className={`w-full sm:w-18 px-3 py-[0.4rem]
-                                        text-[.9rem]  
+                <input {...register(`date.month`)} disabled={formState.isSubmitting} type="text" maxLength={2} placeholder="MM" className={`w-full sm:w-18 px-3 py-[0.4rem]
+                                        text-[.9rem] placeholder:text-[.8rem] placeholder:text-[#aaaaaa]
                                         outline-0 border-1 ${monthError ? 'border-red-400' : ""} rounded-[0.3rem] 
                                         focus:border-[#600594]`} onChange={onChangeMonth} />
-                <input {...register(`date.year`)} disabled={formState.isSubmitting} type="text" className={`
+                <input {...register(`date.year`)} disabled={formState.isSubmitting} type="text" maxLength={2} placeholder="YY" className={`
                     w-full sm:w-18 px-3 py-[0.4rem]
-                                        text-[.9rem]  
+                                        text-[.9rem] placeholder:text-[.8rem] placeholder:text-[#aaaaaa]
                                         outline-0 border-1  ${yearError ? 'border-red-400' : ""} rounded-[0.3rem] 
                                         focus:border-[#600594]`} onChange={onChangeYear} />
             </div>

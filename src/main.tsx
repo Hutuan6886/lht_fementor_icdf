@@ -5,7 +5,9 @@ import App from './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')!).render(
-  <BrowserRouter basename='/lht_fementor_icdf/'>
+  <BrowserRouter
+  // basename='/lht_fementor_icdf/'
+  >
     <App />
   </BrowserRouter>
 )
